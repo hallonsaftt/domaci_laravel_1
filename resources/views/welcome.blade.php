@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel domaci</title>
-    </head>
-    <body>
-       Dobrodosli na Welcome Stranicu!
-    </body>
-</html>
+@extends('layout')
+
+
+@section('pageTitle')
+    Welcome Page
+@endsection
+
+@section('sourcePage')
+
+    <p>Current time is: {{ date('H:i:s') }}</p>
+@endsection
+

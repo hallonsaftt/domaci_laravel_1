@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Laravel domaci</title>
-</head>
-<body>
-Dobrodosli na About Stranicu!
-</body>
-</html>
+
+@extends('layout')
+
+@section('pageTitle')
+    About page
+@endsection
+
+@section('sourcePage')
+    <p>About page</p>
+@endsection
+
