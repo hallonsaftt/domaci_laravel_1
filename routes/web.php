@@ -17,6 +17,9 @@ Route::get('/shop', function () {
     return view('shop');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+
+Route::get('/contact', [\App\Http\Controllers\ContactControler::class, 'index']);
+
+//Route::get('/contact', function () {
+//    return view('contact');
+//});
