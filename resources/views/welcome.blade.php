@@ -7,6 +7,14 @@
 
 @section('sourcePage')
 
-    <p>Current time is: {{ date('H:i:s') }}</p>
+    <p>Current time is: {{ $trenutnovreme }}</p>
+
+    @if($sat >= 0 && $sat <= 12)
+        Dobro jutro
+    @else
+        Dobar dan
+    @endif
+
+    <p>Trenutno sati {{ $sat }}</p>
 @endsection
 
