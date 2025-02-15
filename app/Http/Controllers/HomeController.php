@@ -15,4 +15,9 @@ class HomeController extends Controller
     }
 
     //fin
+
+    public function ggsell()
+    {
+        return view('ggsell');
+    }
 }
