@@ -29,6 +29,11 @@
             </div>
 
             <div class="mt-3">
+                <label for="subject" class="form-label text-light">Naslov</label>
+                <input type="text" class="form-control custom-input" id="subject" name="subject" placeholder="Naslov" required>
+            </div>
+
+            <div class="mt-3">
                 <label for="message" class="form-label text-light">Poruka</label>
                 <textarea class="form-control custom-input" id="message" name="message" rows="4" placeholder="Vaša poruka" required></textarea>
             </div>
