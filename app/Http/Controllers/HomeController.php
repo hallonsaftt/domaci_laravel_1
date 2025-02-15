@@ -13,6 +13,6 @@ class HomeController extends Controller
 
         return view('welcome', compact('lastSixProducts'));
     }
-
+        ///trooob
 
 }
