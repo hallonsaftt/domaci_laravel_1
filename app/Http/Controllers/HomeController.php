@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ShopModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $sat = date("H");
+        $lastSixProducts = ShopModel::orderBy('id', 'desc')->take(6)->get();
 
-        $trenutnovreme = date('H:i:s');
-        return view('welcome', compact('trenutnovreme', 'sat'));
+        return view('welcome', compact('lastSixProducts'));
     }
+
+
 }
