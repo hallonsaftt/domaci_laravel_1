@@ -9,11 +9,7 @@ class ShopController extends Controller
     public function index()
     {
 
-        $products = [
-            "Design UI",
-            "Design UX",
-            "Make Web Shop for You"
-        ];
+
 
 
 

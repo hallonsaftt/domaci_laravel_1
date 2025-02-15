@@ -24,6 +24,6 @@ Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']);
 
 Route::get('/contact', [\App\Http\Controllers\ContactControler::class, 'index']);
 
-//Route::get('/contact', function () {
-//    return view('contact');
-//});
+
+Route::get("/admin/all-contacts", [\App\Http\Controllers\ContactControler::class, 'allContacts']);
+
