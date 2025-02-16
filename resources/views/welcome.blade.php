@@ -15,7 +15,15 @@
             @foreach($lastSixProducts as $lastProduct)
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm shop-cart">
-                        <div class="card-body shop-cart">
+                        <!-- Slika-->
+                        <img
+                            src="{{ asset('images/' . $lastProduct->image) }}"
+                            class="card-img-top"
+                            alt="Product Image"
+                            style="height: 200px; object-fit: cover; padding: 0rem; border-radius-topleft: 10px;"
+                        >
+                        <!--kartice -->
+                        <div class="card-body">
                             <h5 class="card-title">{{ $lastProduct->name }}</h5>
                             <p class="card-txt-des">{{ $lastProduct->description }}</p>
                             <p class="fs-8 m-0">Price:</p>
@@ -26,6 +34,7 @@
                 </div>
             @endforeach
         </div>
+
     </div>
 
     <style>

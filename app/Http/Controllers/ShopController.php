@@ -16,4 +16,11 @@ class ShopController extends Controller
 
         return view('shop', compact('allProducts'));
     }
+
+    public function AdminProducts()
+    {
+        $AdminProducts = ShopModel::all();
+
+        return view('admin-products', compact('AdminProducts'));
+    }
 }

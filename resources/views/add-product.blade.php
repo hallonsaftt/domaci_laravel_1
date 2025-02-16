@@ -17,7 +17,7 @@
                     <div class="alert alert-danger">
                         <ul>
                             @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li style="text-decoration: none;">{{ $error }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -25,7 +25,7 @@
 
                 <!-- Forma za dodavanje proizvoda -->
                 <!-- VAŽNO: "multipart/form-data" ako želiš upload slike -->
-                <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+                <form action="/admin/product-create" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Name -->

@@ -28,10 +28,14 @@ Route::get('/contact', [\App\Http\Controllers\ContactControler::class, 'index'])
 Route::get("/admin/all-contacts", [\App\Http\Controllers\ContactControler::class, 'allContacts']);
 
 
-Route::post("/admin/add-product", [\App\Http\Controllers\AddProductController::class, 'index', 'addProduct']);
+Route::get("/admin/add-product", [\App\Http\Controllers\AddProductController::class, 'index']);
 
 
 Route::post("/send-contact", [\App\Http\Controllers\ContactControler::class, 'sendContact']);
+
+Route::post("/admin/product-create", [\App\Http\Controllers\AddProductController::class, 'create']);
+
+Route::get("/admin/products", [\App\Http\Controllers\ShopController::class, 'AdminProducts']);
 
 
 
