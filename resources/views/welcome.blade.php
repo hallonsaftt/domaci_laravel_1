@@ -39,6 +39,21 @@
         }
     </style>
 
+    <form method="post" action="/send-contact">
+
+        @if($errors->any())
+            <p>Greska: {{ $errors->first() }}</p>
+        @endif
+
+        {{ csrf_field() }}
+            <input name="first_name" type="string" placeholder="Enter your first"><br>
+            <input name="last_name" type="string" placeholder="Enter your last"><br>
+        <input name="email" type="email" placeholder="Enter your email"><br>
+        <input name="subject" type="text" placeholder="Enter subject"><br>
+        <textarea name="description"></textarea><br>
+        <button>Send</button>
+    </form>
+
 
 
 @endsection

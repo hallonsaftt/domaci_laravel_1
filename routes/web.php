@@ -27,3 +27,11 @@ Route::get('/contact', [\App\Http\Controllers\ContactControler::class, 'index'])
 
 Route::get("/admin/all-contacts", [\App\Http\Controllers\ContactControler::class, 'allContacts']);
 
+
+Route::post("/admin/add-product", [\App\Http\Controllers\AddProductController::class, 'index', 'addProduct']);
+
+
+Route::post("/send-contact", [\App\Http\Controllers\ContactControler::class, 'sendContact']);
+
+
+
