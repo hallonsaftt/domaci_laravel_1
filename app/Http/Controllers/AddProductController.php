@@ -12,7 +12,4 @@ class AddProductController extends Controller
         return view('/add-product');
     }
 
-
-
-    }
 }
