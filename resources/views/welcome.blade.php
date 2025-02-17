@@ -17,7 +17,7 @@
                     <div class="card h-100 shadow-sm shop-cart">
                         <!-- Slika-->
                         <img
-                            src="{{ asset('images/' . $lastProduct->image) }}"
+                            src="{{ asset('storage/images/' . $lastProduct->image) }}"
                             class="card-img-top"
                             alt="Product Image"
                             style="height: 200px; object-fit: cover; padding: 0rem; border-radius-topleft: 10px;"
@@ -48,20 +48,20 @@
         }
     </style>
 
-    <form method="post" action="/send-contact">
+{{--    <form method="post" action="/send-contact">--}}
 
-        @if($errors->any())
-            <p>Greska: {{ $errors->first() }}</p>
-        @endif
+{{--        @if($errors->any())--}}
+{{--            <p>Greska: {{ $errors->first() }}</p>--}}
+{{--        @endif--}}
 
-        {{ csrf_field() }}
-            <input name="first_name" type="string" placeholder="Enter your first"><br>
-            <input name="last_name" type="string" placeholder="Enter your last"><br>
-        <input name="email" type="email" placeholder="Enter your email"><br>
-        <input name="subject" type="text" placeholder="Enter subject"><br>
-        <textarea name="description"></textarea><br>
-        <button>Send</button>
-    </form>
+{{--        {{ csrf_field() }}--}}
+{{--            <input name="first_name" type="string" placeholder="Enter your first"><br>--}}
+{{--            <input name="last_name" type="string" placeholder="Enter your last"><br>--}}
+{{--        <input name="email" type="email" placeholder="Enter your email"><br>--}}
+{{--        <input name="subject" type="text" placeholder="Enter subject"><br>--}}
+{{--        <textarea name="description"></textarea><br>--}}
+{{--        <button>Send</button>--}}
+{{--    </form>--}}
 
 
 

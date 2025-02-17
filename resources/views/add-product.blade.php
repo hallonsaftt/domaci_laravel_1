@@ -12,6 +12,30 @@
             <div class="col-md-8 col-lg-6 shop-cart p-4">
                 <h2 class="mb-4 text-center">Add a New Product</h2>
 
+
+                @if(session('success'))
+                    <div id="succ-message" class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <script>
+                    setTimeout(function() {
+                        const elem = document.getElementById('succ-message');
+                        if (elem) {
+
+                            elem.style.transition = 'opacity 600ms';
+                            elem.style.opacity = '0';
+
+
+                            setTimeout(function() {
+                                elem.style.display = 'none';
+                            }, 600);
+                        }
+                    }, 1000);
+                </script>
+
+
                 <!-- Prikaz grešaka validacije (ako postoje) -->
                 @if($errors->any())
                     <div class="alert alert-danger">

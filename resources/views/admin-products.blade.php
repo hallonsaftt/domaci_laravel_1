@@ -28,7 +28,7 @@
                         <!-- Slika proizvoda -->
                         <td>
                             <img
-                                src="{{ asset('images/' . $product->image) }}"
+                                src="{{ asset('storage/images/' . $product->image) }}"
                                 alt="Product Image"
                                 style="width: 100px; height: auto; object-fit: cover;"
                             >

@@ -24,8 +24,19 @@ class AddProductController extends Controller
         ]);
 
         $uploadedFile = $request->file('image');
-        $filename = time() . '.' . $uploadedFile->getClientOriginalExtension();
-        $uploadedFile->move(public_path('images'), $filename);
+
+
+        $path = $uploadedFile->store('images', 'public');
+
+
+        $filename = basename($path);
+
+
+
+//        DIREKTNO U IMGS FOLDERU
+//        $uploadedFile = $request->file('image');
+//        $filename = time() . '.' . $uploadedFile->getClientOriginalExtension();
+//        $uploadedFile->move(public_path('images'), $filename);
 
         // Upis u bazu
         AddProductModel::create([
@@ -36,7 +47,7 @@ class AddProductController extends Controller
             'image'       => $filename // čuvamo ime fajla
         ]);
 
-
+//        return redirect('/add-product');
 // Provera isopisa
 //        echo "Name: ".$request->get('name')."<br>";
 //        echo "Description: ".$request->get('description')."<br>";
@@ -50,6 +61,11 @@ class AddProductController extends Controller
 //
 //        // Prikaz slike (URL je /images/imeFajla)
 //        echo "<img src='" . asset('images/' . $filename) . "' width='200' />";
+//        echo "<img src='" . asset('storage/images/' . $filename) . "' width='200' />";
+
+        return redirect('admin/add-product')->with('success', 'Product added successfully!');
+
+
     }
 
 
