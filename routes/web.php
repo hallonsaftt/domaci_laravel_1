@@ -38,4 +38,11 @@ Route::post("/admin/product-create", [\App\Http\Controllers\AddProductController
 Route::get("/admin/products", [\App\Http\Controllers\ShopController::class, 'AdminProducts']);
 
 
+Route::get("/admin/all-products", [\App\Http\Controllers\ProductsController::class, 'index']);
+
+
+Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'deleteProduct']);
+
+Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactControler::class , 'deleteContact']);
+
 
