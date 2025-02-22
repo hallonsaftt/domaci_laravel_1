@@ -42,6 +42,15 @@ Route::get("/admin/all-products", [\App\Http\Controllers\ProductsController::cla
 
 Route::put('/admin/updateProduct/{id}', [\App\Http\Controllers\ProductsController::class, 'update'])->name('updateProduct');
 
+// tst
+//Route::get('/admin/test-edit-product/{id}', [ProductsController::class, 'testEditProduct'])
+//    ->name('test-edit-product');
+//
+//Route::put('/admin/update-product/{id}', [ProductsController::class, 'productUpdate'])
+//    ->name('update-product');
+
+
+
 
 
 Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('deleteProduct');

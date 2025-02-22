@@ -2,7 +2,7 @@
 
 
 @section('pageTitle')
-    Add product
+    Add New Product
 @endsection
 
 @section('sourcePage')
@@ -10,7 +10,7 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 shop-cart p-4">
-                <h2 class="mb-4 text-center">Add a New Product</h2>
+                <h2 class="mb-4 text-center">Add New Product</h2>
 
 
                 @if(session('success'))

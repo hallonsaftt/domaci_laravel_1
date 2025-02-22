@@ -5,6 +5,8 @@ body {
 }
 
 
+
+
 .table {
     --bs-table-bg: #0d071a;
     --bs-table-color: #ded1ff;
@@ -66,6 +68,13 @@ body {
     background-color: #120a26;
     color: #9b6fe6;
     border: 1px solid #371c6c;
+    border-radius: 10px;
+}
+
+.btn-cart:hover {
+    background-color: #20113e;
+    color: #ccbcf1;
+    border: 1px solid #703fcf;
     border-radius: 10px;
 }
 

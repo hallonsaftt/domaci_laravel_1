@@ -9,8 +9,29 @@
 
     <div class="container my-4">
         <h2 class="text-center mb-3 blink">Products All</h2>
-        <a href="{{ route('add-product') }}"></a> <button class="btn btn-cart mt-2">Add NEW product</button></a><br><br>
+        <a href="{{ route('add-product') }}"><button class="btn btn-cart mt-2">Add NEW product</button></a><br><br>
 
+
+        @if(session('success'))
+            <div id="succ-msg" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        <script>
+            setTimeout(function() {
+                const elem = document.getElementById('succ-msg');
+                if (elem) {
+
+                    elem.style.transition = 'opacity 600ms';
+                    elem.style.opacity = '0';
+
+
+                    setTimeout(function() {
+                        elem.style.display = 'none';
+                    }, 600);
+                }
+            }, 2500);
+        </script>
 
         <div class="table-responsive shop-cart p-3" style="border-radius: 10px;">
             <table class="table align-middle text-white custom-table">
