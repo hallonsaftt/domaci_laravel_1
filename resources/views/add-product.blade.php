@@ -47,8 +47,7 @@
                     </div>
                 @endif
 
-                <!-- Forma za dodavanje proizvoda -->
-                <!-- VAŽNO: "multipart/form-data" ako želiš upload slike -->
+
                 <form action="/admin/product-create" method="POST" enctype="multipart/form-data">
                     @csrf
 

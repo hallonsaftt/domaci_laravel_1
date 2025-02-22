@@ -9,8 +9,7 @@
     <div class="container my-4">
         <h2 class="text-center mb-3 blink">Products</h2>
 
-        <!-- Omotaćemo tabelu div-om koji ima shop-cart klasu
-             da bi dobio tamnu pozadinu i ljubičaste okvire. -->
+
         <div class="table-responsive shop-cart p-3" style="border-radius: 10px;">
             <table class="table align-middle text-white">
                 <thead>

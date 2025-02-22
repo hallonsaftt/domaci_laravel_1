@@ -16,11 +16,11 @@ class AddProductController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:products',
             'description' => 'required',
             'amount' => 'required',
             'price' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
         ]);
 
         $uploadedFile = $request->file('image');
@@ -63,7 +63,7 @@ class AddProductController extends Controller
 //        echo "<img src='" . asset('images/' . $filename) . "' width='200' />";
 //        echo "<img src='" . asset('storage/images/' . $filename) . "' width='200' />";
 
-        return redirect('admin/add-product')->with('success', 'Product added successfully!');
+        return redirect('admin/all-products')->with('success', 'Product added successfully!');
 
 
     }
