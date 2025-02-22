@@ -45,8 +45,16 @@
                         <td class="shop-cart-txt">{{ $product->amount }}</td>
 
                         <td class="shop-cart-txt">
-                            <a class="btn btn-danger" href="/admin/delete-product/{{ $product->id }}">Obrisi</a>
-                            <a class="btn btn-primary">Edituj</a>
+                            <a class="btn btn-danger" href="{{ route('deleteProduct', ['product' => $product->id]) }}">Obrisi</a>
+                            <a class="btn btn-primary edit-btn"
+                               data-id="{{ $product->id }}"
+                               data-name="{{ $product->name }}"
+                               data-description="{{ $product->description }}"
+                               data-price="{{ $product->price }}"
+                               data-amount="{{ $product->amount }}">
+                                Edituj
+                            </a>
+
                         </td>
                     </tr>
                 @endforeach
@@ -54,6 +62,74 @@
             </table>
         </div>
     </div>
+
+    <!-- Modal za editovanje proizvoda -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content custom-bg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edituj Proizvod</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Zatvori">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editProductForm" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="productName">Naziv</label>
+                            <input type="text" class="form-control custom-input" id="productName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Opis</label>
+                            <textarea class="form-control custom-input" id="productDescription" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Cena (&euro;)</label>
+                            <input type="text" class="form-control custom-input" id="productPrice" name="price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productAmount">Količina</label>
+                            <input type="number" class="form-control custom-input" id="productAmount" name="amount" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                        <button type="submit" class="btn btn-purple">Sačuvaj promene</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').on('click', function() {
+                // Uzimanje podataka iz data atributa dugmeta
+                let productId = $(this).data('id');
+                let name = $(this).data('name');
+                let description = $(this).data('description');
+                let price = $(this).data('price');
+                let amount = $(this).data('amount');
+
+                // Popunjavanje forme u modalu
+                $('#productName').val(name);
+                $('#productDescription').val(description);
+                $('#productPrice').val(price);
+                $('#productAmount').val(amount);
+
+                // Postavljanje action atributa forme za update
+                $('#editProductForm').attr('action', '/updateProduct/' + productId);
+
+                // Otvaranje modala
+                $('#editModal').modal('show');
+            });
+        });
+    </script>
+
+
 
 
 

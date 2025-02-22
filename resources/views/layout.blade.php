@@ -25,29 +25,11 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-{{--<script>--}}
-{{--    document.addEventListener("DOMContentLoaded", function () {--}}
-{{--        const darkModeToggle = document.getElementById("toggleDarkMode");--}}
-{{--        const body = document.body;--}}
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-{{--        body.classList.add("bg-dark", "text-white");--}}
-{{--        darkModeToggle.innerText = "☀️ Light";--}}
-
-{{--        darkModeToggle.addEventListener("click", function () {--}}
-{{--            if (body.classList.contains("bg-dark")) {--}}
-{{--                body.classList.remove("bg-dark", "text-white");--}}
-{{--                localStorage.setItem("darkMode", "disabled");--}}
-{{--                darkModeToggle.innerText = "🌙 Dark";--}}
-{{--            } else {--}}
-{{--                body.classList.add("bg-dark", "text-white");--}}
-{{--                localStorage.setItem("darkMode", "enabled");--}}
-{{--                darkModeToggle.innerText = "☀️ Light";--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });--}}
-
-{{--</script>--}}
 
 </body>
 </html>

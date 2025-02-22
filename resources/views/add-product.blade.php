@@ -48,7 +48,7 @@
                 @endif
 
 
-                <form action="/admin/product-create" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('productCreate') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Name -->

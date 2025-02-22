@@ -33,16 +33,22 @@ Route::get("/admin/add-product", [\App\Http\Controllers\AddProductController::cl
 
 Route::post("/send-contact", [\App\Http\Controllers\ContactControler::class, 'sendContact']);
 
-Route::post("/admin/product-create", [\App\Http\Controllers\AddProductController::class, 'create']);
+Route::post("/admin/product-create", [\App\Http\Controllers\AddProductController::class, 'create'])->name('productCreate');
 
 Route::get("/admin/products", [\App\Http\Controllers\ShopController::class, 'AdminProducts']);
 
 
-Route::get("/admin/all-products", [\App\Http\Controllers\ProductsController::class, 'index']);
+Route::get("/admin/all-products", [\App\Http\Controllers\ProductsController::class, 'index'])->name('allProducts');
+
+Route::put('/admin/updateProduct/{id}', [\App\Http\Controllers\ProductsController::class, 'update'])->name('updateProduct');
 
 
-Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'deleteProduct']);
+
+Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('deleteProduct');
 
 Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactControler::class , 'deleteContact']);
+
+
+
 
 

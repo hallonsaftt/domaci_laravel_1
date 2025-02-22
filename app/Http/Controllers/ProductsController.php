@@ -32,4 +32,22 @@ class ProductsController extends Controller
 
 
     }
+
+
+    public function update(Request $request, $id)
+    {
+        // Validacija podataka
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'amount' => 'required|integer',
+        ]);
+
+        $product = ShopModel::findOrFail($id);
+        $product->update($validatedData);
+
+        return redirect()->back()->with('success', 'Product updated successfully');
+    }
+
 }
