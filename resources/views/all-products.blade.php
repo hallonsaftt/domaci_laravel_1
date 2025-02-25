@@ -68,14 +68,15 @@
 
                         <td class="shop-cart-txt">
                             <a class="btn btn-danger" href="{{ route('deleteProduct', ['product' => $product->id]) }}">Obrisi</a>
-                            <a class="btn btn-primary edit-btn"
-                               data-id="{{ $product->id }}"
-                               data-name="{{ $product->name }}"
-                               data-description="{{ $product->description }}"
-                               data-price="{{ $product->price }}"
-                               data-amount="{{ $product->amount }}">
-                                Edituj
-                            </a>
+{{--                            <a class="btn btn-primary edit-btn"--}}
+{{--                               data-id="{{ $product->id }}"--}}
+{{--                               data-name="{{ $product->name }}"--}}
+{{--                               data-description="{{ $product->description }}"--}}
+{{--                               data-price="{{ $product->price }}"--}}
+{{--                               data-amount="{{ $product->amount }}">--}}
+{{--                                Edituj--}}
+{{--                            </a>--}}
+                            <a class="btn btn-primary" href="{{ route('singleProduct', ['product' => $product->id]) }}">Edituj</a>
 
                         </td>
                     </tr>
@@ -87,81 +88,81 @@
         </div>
     </div>
 
-    <!-- zza editovanje proizvoda -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content custom-bg">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edituj Proizvod</h5>
+{{--    <!-- zza editovanje proizvoda -->--}}
+{{--    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">--}}
+{{--        <div class="modal-dialog">--}}
+{{--            <div class="modal-content custom-bg">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title" id="editModalLabel">Edituj Proizvod</h5>--}}
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
-                </div>
-                <form id="editProductForm" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="productName">Naziv</label>
-                            <input type="text" class="form-control custom-input" id="productName" name="name" required>
-                        </div>
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>--}}
+{{--                </div>--}}
+{{--                <form id="editProductForm" method="POST" enctype="multipart/form-data">--}}
+{{--                    @csrf--}}
+{{--                    @method('PUT')--}}
+{{--                    <div class="modal-body">--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="productName">Naziv</label>--}}
+{{--                            <input type="text" class="form-control custom-input" id="productName" name="name" required>--}}
+{{--                        </div>--}}
 
-                        <div class="form-group">
-                            <label for="productImage">Slika</label>
-                            <input type="file" class="form-control custom-input" id="productImage" name="image">
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="productImage">Slika</label>--}}
+{{--                            <input type="file" class="form-control custom-input" id="productImage" name="image">--}}
+{{--                        </div>--}}
 
-                        <div class="form-group">
-                            <label for="productDescription">Opis</label>
-                            <textarea class="form-control custom-input" id="productDescription" name="description" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="productPrice">Cena (&euro;)</label>
-                            <input type="text" class="form-control custom-input" id="productPrice" name="price" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productAmount">Količina</label>
-                            <input type="number" class="form-control custom-input" id="productAmount" name="amount" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
+{{--                        <div class="form-group">--}}
+{{--                            <label for="productDescription">Opis</label>--}}
+{{--                            <textarea class="form-control custom-input" id="productDescription" name="description" required></textarea>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="productPrice">Cena (&euro;)</label>--}}
+{{--                            <input type="text" class="form-control custom-input" id="productPrice" name="price" required>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="productAmount">Količina</label>--}}
+{{--                            <input type="number" class="form-control custom-input" id="productAmount" name="amount" required>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="modal-footer">--}}
 
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                        <button type="submit" class="btn btn-purple">Sačuvaj promene</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+{{--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>--}}
+{{--                        <button type="submit" class="btn btn-purple">Sačuvaj promene</button>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 
 @endsection
 
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.edit-btn').on('click', function() {
+{{--    <script>--}}
+{{--        $(document).ready(function() {--}}
+{{--            $('.edit-btn').on('click', function() {--}}
 
-                let productId = $(this).data('id');
-                let name = $(this).data('name');
-                let description = $(this).data('description');
-                let price = $(this).data('price');
-                let amount = $(this).data('amount');
-
-
-                $('#productName').val(name);
-                $('#productDescription').val(description);
-                $('#productPrice').val(price);
-                $('#productAmount').val(amount);
+{{--                let productId = $(this).data('id');--}}
+{{--                let name = $(this).data('name');--}}
+{{--                let description = $(this).data('description');--}}
+{{--                let price = $(this).data('price');--}}
+{{--                let amount = $(this).data('amount');--}}
 
 
-                $('#editProductForm').attr('action', '/admin/updateProduct/' + productId);
+{{--                $('#productName').val(name);--}}
+{{--                $('#productDescription').val(description);--}}
+{{--                $('#productPrice').val(price);--}}
+{{--                $('#productAmount').val(amount);--}}
 
 
-                var editModal = new bootstrap.Modal(document.getElementById('editModal'));
-                editModal.show();
-            });
-        });
-    </script>
+{{--                $('#editProductForm').attr('action', '/admin/updateProduct/' + productId);--}}
+
+
+{{--                var editModal = new bootstrap.Modal(document.getElementById('editModal'));--}}
+{{--                editModal.show();--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
 

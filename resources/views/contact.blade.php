@@ -11,7 +11,7 @@
     <div class="container contact-cont mt-5">
         <h2 class="text-center text-light mb-4">Kontaktirajte nas</h2>
 
-        <form action="#" method="POST" class="p-4 rounded custom-bg">
+        <form action="/send-contact" method="POST" class="p-4 rounded custom-bg">
             <div class="row">
                 <div class="col-md-6">
                     <label for="first_name" class="form-label text-light">Ime</label>

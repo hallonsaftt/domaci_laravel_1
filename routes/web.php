@@ -2,6 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+///ovde??
+///
+///
+///
+///
+
+//
+//use Illuminate\Support\Facades\Route;
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -49,15 +73,16 @@ Route::put('/admin/updateProduct/{id}', [\App\Http\Controllers\ProductsControlle
 //Route::put('/admin/update-product/{id}', [ProductsController::class, 'productUpdate'])
 //    ->name('update-product');
 
+Route::get('/admin/product/edit/{product}', [\App\Http\Controllers\ProductsController::class, 'singleProduct'])
+    ->name('singleProduct');
 
-
+Route::post('/admmin/product/save/{product}', [\App\Http\Controllers\ProductsController::class, 'saveProduct'])
+    ->name('saveProduct');
 
 
 Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('deleteProduct');
 
-Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactControler::class , 'deleteContact']);
+Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactControler::class, 'deleteContact']);
 
 
-
-
-
+require __DIR__.'/auth.php';
