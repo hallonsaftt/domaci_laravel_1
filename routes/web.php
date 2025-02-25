@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AddProductController;
+use App\Http\Controllers\ContactControler;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,20 +21,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-///ovde??
-///
-///
-///
-///
-
-//
-//use Illuminate\Support\Facades\Route;
-
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -38,51 +28,60 @@ Route::get('/about', function () {
     return view('about');
 });
 
-
-//Route::get('/shop', function () {
-//    return view('shop');
-//});
-
-Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index']);
 
 
-Route::get('/contact', [\App\Http\Controllers\ContactControler::class, 'index']);
+Route::get('/contact', [ContactControler::class, 'index']);
+
+Route::post("/send-contact", [ContactControler::class, 'sendContact']);
 
 
-Route::get("/admin/all-contacts", [\App\Http\Controllers\ContactControler::class, 'allContacts']);
+Route::middleware('auth')->prefix("admin")->group(function () {
 
 
-Route::get("/admin/add-product", [\App\Http\Controllers\AddProductController::class, 'index'])->name('add-product');
+
+    Route::get("/all-contacts", [ContactControler::class, 'allContacts']);
 
 
-Route::post("/send-contact", [\App\Http\Controllers\ContactControler::class, 'sendContact']);
-
-Route::post("/admin/product-create", [\App\Http\Controllers\AddProductController::class, 'create'])->name('productCreate');
-
-Route::get("/admin/products", [\App\Http\Controllers\ShopController::class, 'AdminProducts']);
+    Route::get("/add-product", [AddProductController::class, 'index'])
+        ->name('add-product');
 
 
-Route::get("/admin/all-products", [\App\Http\Controllers\ProductsController::class, 'index'])->name('allProducts');
+    Route::post("/product-create", [AddProductController::class, 'create'])
+        ->name('productCreate');
 
-Route::put('/admin/updateProduct/{id}', [\App\Http\Controllers\ProductsController::class, 'update'])->name('updateProduct');
-
-// tst
-//Route::get('/admin/test-edit-product/{id}', [ProductsController::class, 'testEditProduct'])
-//    ->name('test-edit-product');
-//
-//Route::put('/admin/update-product/{id}', [ProductsController::class, 'productUpdate'])
-//    ->name('update-product');
-
-Route::get('/admin/product/edit/{product}', [\App\Http\Controllers\ProductsController::class, 'singleProduct'])
-    ->name('singleProduct');
-
-Route::post('/admmin/product/save/{product}', [\App\Http\Controllers\ProductsController::class, 'saveProduct'])
-    ->name('saveProduct');
+    Route::get("/products", [ShopController::class, 'AdminProducts']);
 
 
-Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductsController::class, 'deleteProduct'])->name('deleteProduct');
+    Route::get("/all-products", [ProductsController::class, 'index'])
 
-Route::get('/admin/delete-contact/{contact}', [\App\Http\Controllers\ContactControler::class, 'deleteContact']);
+        ->name('allProducts');
+
+    Route::put('/updateProduct/{id}', [ProductsController::class, 'update'])
+
+        ->name('updateProduct');
+
+
+
+    Route::get('/product/edit/{product}', [ProductsController::class, 'singleProduct'])
+
+        ->name('singleProduct');
+
+    Route::post('/product/save/{product}', [ProductsController::class, 'saveProduct'])
+
+        ->name('saveProduct');
+
+
+    Route::get('/delete-product/{product}', [ProductsController::class, 'deleteProduct'])
+
+        ->name('deleteProduct');
+
+    Route::get('/delete-contact/{contact}', [ContactControler::class, 'deleteContact']);
+
+
+});
+
+
 
 
 require __DIR__.'/auth.php';
