@@ -4,6 +4,7 @@ use App\Http\Controllers\AddProductController;
 use App\Http\Controllers\ContactControler;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ShopController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,7 +37,7 @@ Route::get('/contact', [ContactControler::class, 'index']);
 Route::post("/send-contact", [ContactControler::class, 'sendContact']);
 
 
-Route::middleware('auth')->prefix("admin")->group(function () {
+Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function () {
 
 
 
