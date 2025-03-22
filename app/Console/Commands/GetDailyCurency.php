@@ -26,11 +26,16 @@ class GetDailyCurency extends Command
      */
     public function handle()
     {
+        $curencies = ["usd", "eur"];
 
-        $responseGET = Http::get("https://kurs.resenje.org/api/v1/currencies/eur/rates/today");
+        foreach ($curencies as $currency) {
 
-        dd($responseGET->json()["exchange_middle"]);
+            $responseGET = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
 
+
+            dd($responseGET->json()["exchange_middle"]);
+
+        }
 
     }
 }
