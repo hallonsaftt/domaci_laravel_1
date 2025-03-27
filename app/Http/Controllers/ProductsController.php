@@ -11,7 +11,7 @@ use Tests\Fixtures\Models\Product;
 class ProductsController extends Controller
 {
     private $productRepo;
-
+///
     public function __construct()
 
     {
