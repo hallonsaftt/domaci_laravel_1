@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
 use App\Models\AddProductModel;
 use Illuminate\Http\Request;
 
@@ -13,15 +14,15 @@ class AddProductController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function create(CreateProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:products',
-            'description' => 'required',
-            'amount' => 'required',
-            'price' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
-        ]);
+//        $request->validate([
+//            'name' => 'required|unique:products',
+//            'description' => 'required',
+//            'amount' => 'required',
+//            'price' => 'required',
+//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:50000',
+//        ]);
 
         $uploadedFile = $request->file('image');
 

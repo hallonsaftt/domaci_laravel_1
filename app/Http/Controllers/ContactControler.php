@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SendContactRequest;
 use App\Models\ContactModel;
 use Illuminate\Http\Request;
 
@@ -19,16 +20,16 @@ class ContactControler extends Controller
         return view('allContacts', compact('allContacts'));
     }
 
-    public function sendContact(Request $request)
+    public function sendContact(SendContactRequest $request)
     {
-        $request->validate([
-            //name => pravilo
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'subject' => 'required|string|max:255',
-            'description' => 'required|min:5',
-        ]);
+//        $request->validate([
+//            //name => pravilo
+//            'first_name' => 'required',
+//            'last_name' => 'required',
+//            'email' => 'required|email',
+//            'subject' => 'required|string|max:255',
+//            'description' => 'required|min:5',
+//        ]);
 
 
         ContactModel::create([
