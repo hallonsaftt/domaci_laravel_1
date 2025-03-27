@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveProductRequest;
 use App\Models\ShopModel;
+use App\Repositories\ProductRepositories;
 use Illuminate\Http\Request;
+use Tests\Fixtures\Models\Product;
 
 class ProductsController extends Controller
 {
+    private $productRepo;
+
+    public function __construct()
+
+    {
+        $this->productRepo = new ProductRepositories();
+    }
     public function index()
     {
         $allProducts = ShopModel::all();
@@ -17,8 +27,8 @@ class ProductsController extends Controller
 
     public function deleteProduct($product)
     {
-        $singleProduct = ShopModel::where(['id' => $product])->first();
-
+//        $singleProduct = ShopModel::where(['id' => $product])->first();
+        $singleProduct = $this->productRepo->deleteProduct($product);
 
         if($singleProduct === null)
         {
@@ -51,15 +61,17 @@ class ProductsController extends Controller
 //    }
 
 
-    public function update(Request $request, $id)
+    public function update(SaveProductRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'amount' => 'required|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:50000', // nova validacija
-        ]);
+//        $validatedData = $request->validate([
+//            'name' => 'required|string|max:255',
+//            'description' => 'required|string',
+//            'price' => 'required|numeric',
+//            'amount' => 'required|integer',
+//            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:50000', // nova validacija
+//        ]);
+
+        $validatedData = $request->validated();
 
         $product = ShopModel::findOrFail($id);
 
