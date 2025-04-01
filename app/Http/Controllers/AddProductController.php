@@ -64,7 +64,8 @@ class AddProductController extends Controller
 //        echo "<img src='" . asset('images/' . $filename) . "' width='200' />";
 //        echo "<img src='" . asset('storage/images/' . $filename) . "' width='200' />";
 
-        return redirect('admin/all-products')->with('success', 'Product added successfully!');
+//        return redirect('admin/all-products')->with('success', 'Product added successfully!');
+        return redirect()->back()->with('success', 'Product added successfully!');
 
 
     }

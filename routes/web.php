@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddProductController;
 use App\Http\Controllers\ContactControler;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -31,52 +32,35 @@ Route::get('/about', function () {
 
 Route::get('/shop', [ShopController::class, 'index']);
 
+Route::controller(ContactControler::class)->name('contact.')->group(function () {
+        Route::get('/contact', 'index')->name('index');
+        Route::post('/contact/send', 'sendContact')->name('send');
+    });
 
-Route::get('/contact', [ContactControler::class, 'index']);
-
-Route::post("/send-contact", [ContactControler::class, 'sendContact']);
 
 
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function () {
 
 
+    Route::controller(AddProductController::class)->name('product.')->group(function () {
+        Route::get('/add-product', 'index')->name('add');
+        Route::post('/create-product', 'create')->name('create');
+    });
 
-    Route::get("/all-contacts", [ContactControler::class, 'allContacts']);
-
-
-    Route::get("/add-product", [AddProductController::class, 'index'])
-        ->name('add-product');
-
-
-    Route::post("/product-create", [AddProductController::class, 'create'])
-        ->name('productCreate');
 
     Route::get("/products", [ShopController::class, 'AdminProducts']);
 
+    Route::controller(ProductsController::class)->prefix("products")->name("products.")->group(function () {
 
-    Route::get("/all-products", [ProductsController::class, 'index'])
-
-        ->name('allProducts');
-
-    Route::put('/updateProduct/{id}', [ProductsController::class, 'update'])
-
-        ->name('updateProduct');
-
-
-
-    Route::get('/product/edit/{product}', [ProductsController::class, 'singleProduct'])
-
-        ->name('singleProduct');
-
-    Route::post('/product/save/{product}', [ProductsController::class, 'saveProduct'])
-
-        ->name('saveProduct');
+        Route::get('/all', 'index')->name('all');
+        Route::get('/update/{id}', 'update')->name('update');
+        Route::get('/edit/{product}', 'singleProduct')->name('single');
+        Route::post('/save/{product}', 'saveProduct')->name('save');
+        Route::get('/delete/{product}', 'deleteProduct')->name('delete');
+    });
 
 
-    Route::get('/delete-product/{product}', [ProductsController::class, 'deleteProduct'])
-
-        ->name('deleteProduct');
-
+    Route::get("/all-contacts", [ContactControler::class, 'allContacts']);
     Route::get('/delete-contact/{contact}', [ContactControler::class, 'deleteContact']);
 
 

@@ -18,7 +18,7 @@ class SendContactRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'required|email',
             'subject' => 'required|string|max:255',
-            'description' => 'required|min:5',
+            'message' => 'required|min:5',
         ];
     }
 }

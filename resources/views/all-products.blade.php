@@ -9,7 +9,7 @@
 
     <div class="container my-4">
         <h2 class="text-center mb-3 blink">Products All</h2>
-        <a href="{{ route('add-product') }}"><button class="btn btn-cart mt-2">Add NEW product</button></a><br><br>
+        <a href="{{ route('product.add') }}"><button class="btn btn-cart mt-2">Add NEW product</button></a><br><br>
 
 
         @if(session('success'))
@@ -67,7 +67,7 @@
                         <td class="shop-cart-txt">{{ $product->amount }}</td>
 
                         <td class="shop-cart-txt">
-                            <a class="btn btn-danger" href="{{ route('deleteProduct', ['product' => $product->id]) }}">Obrisi</a>
+                            <a class="btn btn-danger" href="{{ route('products.delete', ['product' => $product->id]) }}">Obrisi</a>
 {{--                            <a class="btn btn-primary edit-btn"--}}
 {{--                               data-id="{{ $product->id }}"--}}
 {{--                               data-name="{{ $product->name }}"--}}
@@ -76,7 +76,7 @@
 {{--                               data-amount="{{ $product->amount }}">--}}
 {{--                                Edituj--}}
 {{--                            </a>--}}
-                            <a class="btn btn-primary" href="{{ route('singleProduct', ['product' => $product->id]) }}">Edituj</a>
+                            <a class="btn btn-primary" href="{{ route('products.single', ['product' => $product->id]) }}">Edituj</a>
 
                         </td>
                     </tr>

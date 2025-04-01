@@ -10,7 +10,7 @@
 
     <div class="container my-5">
         <div class="row justify-content-center">
-            <a href="{{ route('allProducts') }}"><button class="btn btn-cart mt-2"><< All product</button></a><br><br><br>
+            <a href="{{ route('products.all') }}"><button class="btn btn-cart mt-2"><< All product</button></a><br><br><br>
             <div class="col-md-8 col-lg-6 shop-cart p-4">
                 <h2 class="mb-4 text-center">Edit [ {{ $product->name }} ]</h2>
 
@@ -50,7 +50,7 @@
 {{--                @endif--}}
 
 
-                <form action="{{ route('saveProduct', ['product' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('products.save', ['product' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Name -->
