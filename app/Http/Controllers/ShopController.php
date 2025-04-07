@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\ShopModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
     public function index()
     {
-
 
         $allProducts = ShopModel::all();
 

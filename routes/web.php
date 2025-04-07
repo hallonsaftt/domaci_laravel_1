@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddProductController;
 use App\Http\Controllers\ContactControler;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use App\Http\Middleware\AdminCheckMiddleware;
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/about', function () {
@@ -31,6 +32,13 @@ Route::get('/about', function () {
 });
 
 Route::get('/shop', [ShopController::class, 'index']);
+Route::get("/product/{product}", [HomeController::class, 'permalink'])
+->name("product.permalink");
+
+Route::post("/cart/add", [\App\Http\Controllers\ShoppingCartController::class, 'addToCart'])
+->name("cart.add");
+
+Route::get("/cart", [\App\Http\Controllers\ShoppingCartController::class, 'cart'])->name('cart');
 
 Route::controller(ContactControler::class)->name('contact.')->group(function () {
         Route::get('/contact', 'index')->name('index');

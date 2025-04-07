@@ -2,7 +2,7 @@
 
 
 @section('pageTitle')
-    Welcome Page
+    Amx sell
 @endsection
 
 @section('sourcePage')
@@ -28,7 +28,9 @@
                             <p class="card-txt-des">{{ $lastProduct->description }}</p>
                             <p class="fs-8 m-0">Price:</p>
                             <h5 class="shop-cart-txt">{{ $lastProduct->price }}&euro;</h5>
-                            <a href="#" class="btn btn-cart mt-2">Add to Cart</a>
+{{--                            <a href="{{ route('product.permalink', ['product' => $product->id]) }}" class="btn btn-cart mt-2">View product</a>--}}
+                            <a href="{{ route('product.permalink', ['product' => $lastProduct->id]) }}" class="btn btn-cart mt-2">View product</a>
+
                         </div>
                     </div>
                 </div>
