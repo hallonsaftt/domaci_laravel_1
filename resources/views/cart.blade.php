@@ -5,11 +5,19 @@
 @endsection
 
 @section('sourcePage')
-    <div class="row">
-        @foreach($products as $id => $amount)
-            <div class="col-md-4 mb-4">
-                <a>Product ID: {{ $id }}, Quantity: {{ $amount }}</a>
-            </div>
+    <div class="container my-4">
+        <h3 class="mb-4">🛒 Your Cart</h3>
+
+        @foreach($cart as $product)
+            @if(is_array($product) && isset($product['product_id'], $product['amount']))
+                <p>Product ID: {{ $product['product_id'] }}</p>
+                <p>Quantity: {{ $product['amount'] }}</p>
+            @else
+                <p style="color:red;">⚠️ Neispravan unos: {{ json_encode($product) }}</p>
+            @endif
         @endforeach
+
+
+
     </div>
 @endsection

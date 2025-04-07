@@ -11,16 +11,21 @@ class ShoppingCartController extends Controller
 {
     public function addToCart(CartAddRequest $request)
     {
-        Session::put("product", [
-            $request->id => $request->amount
-        ]);
+        $cart = Session::get('cart', []);
+        $cart[] = [
+            'product_id' => (int) $request->id,
+            'amount' => (int) $request->amount
+        ];
+        Session::put('cart', $cart);
 
-        return redirect("/cart");
+        return redirect()->route('cart');
     }
+
 
     public function cart()
     {
-        $products = Session::get('product', []); // uzimamo proizvode iz sesije
-        return view("cart", compact('products'));
+        $cart = Session::get('cart', []);
+        return view('cart', compact('cart'));
     }
+
 }
