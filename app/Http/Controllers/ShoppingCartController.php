@@ -14,5 +14,13 @@ class ShoppingCartController extends Controller
         Session::put("product", [
             $request->id => $request->amount
         ]);
+
+        return redirect("/cart");
+    }
+
+    public function cart()
+    {
+        $products = Session::get('product', []); // uzimamo proizvode iz sesije
+        return view("cart", compact('products'));
     }
 }
