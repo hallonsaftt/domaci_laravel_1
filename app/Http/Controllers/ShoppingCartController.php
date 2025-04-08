@@ -9,23 +9,23 @@ use Illuminate\Routing\Controller;
 
 class ShoppingCartController extends Controller
 {
-    public function addToCart(CartAddRequest $request)
+    public function cart()
     {
-        $cart = Session::get('cart', []);
-        $cart[] = [
-            'product_id' => (int) $request->id,
-            'amount' => (int) $request->amount
-        ];
-        Session::put('cart', $cart);
 
-        return redirect()->route('cart');
+        return view('cart', [
+            'cart' => Session::get('product')
+        ]);
     }
 
 
-    public function cart()
+    public function addToCart(CartAddRequest $request)
     {
-        $cart = Session::get('cart', []);
-        return view('cart', compact('cart'));
+        Session::push('product', [
+            'product_id' => $request->id,
+            'amount' => $request->amount,
+        ]);
+
+        return redirect()->route('cart');
     }
 
 }
