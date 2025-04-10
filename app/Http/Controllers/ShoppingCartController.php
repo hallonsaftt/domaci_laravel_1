@@ -10,21 +10,45 @@ use Illuminate\Routing\Controller;
 
 class ShoppingCartController extends Controller
 {
+//    public function cart()
+//    {
+//
+//        $allProducts = [];
+//
+//        foreach (Session::get('product') as $cartItem)
+//        {
+//            $allProducts[] = $cartItem['product_id'];
+//        }
+//
+//        $products = ShopModel::whereIn('id', $allProducts)->get();
+//
+//        return view('cart', [
+//            'cart' => Session::get('product'),
+//            'products' => $products,
+//        ]);
+//    }
+
     public function cart()
     {
+        $combined = [];
 
-        $allProducts = [];
+        foreach (Session::get('product') as $item) {
 
-        foreach (Session::get('product') as $cartItem)
-        {
-            $allProducts[] = $cartItem['product_id'];
+            $product = ShopModel::firstWhere(['id' => $item['product_id']]);
+
+            if ($product) {
+                $combined[] = [
+                    'name' => $product->name,
+                    'amount' => $item['amount'],
+                    'price' => $product->price,
+                    'total' => $item["amount"] * $product->price,
+                ];
+
+            }
         }
 
-        $products = ShopModel::whereIn('id', $allProducts)->get();
-
-        return view('cart', [
-            'cart' => Session::get('product'),
-            'products' => $products,
+        return view("cart", [
+            "combinedItems" => $combined,
         ]);
     }
 
