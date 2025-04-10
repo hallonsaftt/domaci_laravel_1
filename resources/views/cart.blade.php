@@ -5,91 +5,97 @@
 @endsection
 
 @section('sourcePage')
-    <div class="container my-4">
-        <h3 class="mb-4">🛒 Your Cart</h3>
+    <div class="container my-5">
+        <h2 class="mb-4">🛒 Your Shopping Cart</h2>
 
         <div class="row">
-            <!-- Left column - Products table -->
-            <div class="col-md-8">
-                <div class="card mb-4">
+            <!-- Products Table -->
+            <div class="col-lg-8 mb-4">
+                <div class="card shadow-sm">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Total</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($combinedItems as $item)
+                        @if(count($combinedItems) > 0)
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead class="table-light">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th style="width: 150px;">Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($combinedItems as $item)
+                                        <tr>
+                                            <td>{{ $item['name'] }}</td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button">−</button>
+                                                    <input type="text" class="form-control text-center" value="{{ $item['amount'] }}">
+                                                    <button class="btn btn-outline-secondary btn-sm" type="button">+</button>
+                                                </div>
+                                            </td>
+                                            <td>${{ number_format($item['price'], 2) }}</td>
+                                            <td>${{ number_format($item['total'], 2) }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                            <tr>
-                                                <td>{{ $item['name'] }}</td>
-                                                <td>
-                                                    <div class="input-group" style="width: 120px;">
-                                                        <button class="btn btn-outline-secondary" type="button">-</button>
-                                                        <input type="text" class="form-control text-center" value="{{ $item['amount'] }}">
-                                                        <button class="btn btn-outline-secondary" type="button">+</button>
-                                                    </div>
-                                                </td>
-                                                <td>${{ $item['price'] }}</td>
-                                                <td>${{ $item['total'] }}</td>
-                                                <td>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-3">
-                            <a href="/shop" class="btn btn-outline-secondary">
-                                <i class="fas fa-arrow-left me-2"></i>Back to Shop
-                            </a>
-                            <button class="btn btn-outline-danger">Clear Cart</button>
-                        </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="/shop" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                                </a>
+                                <form method="POST" action="/cart/clear">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger">Clear Cart</button>
+                                </form>
+                            </div>
+                        @else
+                            <div class="text-center p-5">
+                                <h4 class="mb-3">Your cart is empty 🛍️</h4>
+                                <a href="/shop" class="btn btn-primary">Browse Products</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
 
-            <!-- Right column - Order summary -->
-            <div class="col-md-4">
-                <div class="card">
+            <!-- Order Summary -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Order Summary</h5>
+                        <h5 class="mb-3">Order Summary</h5>
 
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal:</span>
-                            <span></span>
+                            <span>${{ number_format($subtotal ?? 0, 2) }}</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping:</span>
-                            <span></span>
+                            <span>${{ number_format($shipping ?? 0, 2) }}</span>
                         </div>
-                        <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex justify-content-between mb-2">
                             <span>Tax:</span>
-                            <span></span>
+                            <span>${{ number_format($tax ?? 0, 2) }}</span>
                         </div>
 
                         <hr>
 
                         <div class="d-flex justify-content-between fw-bold mb-4">
                             <span>Total:</span>
-                            <span></span>
+                            <span>${{ number_format($total ?? 0, 2) }}</span>
                         </div>
-                        <button class="btn btn-primary w-100 mb-2">
-                            Proceed to Checkout
-                        </button>
-                        <button class="btn btn-outline-primary w-100">
-                            Continue Shopping
-                        </button>
+
+                        <a href="/cart/finish" class="btn btn-primary w-100 mb-2">Proceed to Checkout</a>
+                        <a href="/" class="btn btn-outline-primary w-100">Continue Shopping</a>
                     </div>
                 </div>
             </div>

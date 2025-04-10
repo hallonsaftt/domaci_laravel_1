@@ -6,8 +6,10 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +41,14 @@ Route::post("/cart/add", [\App\Http\Controllers\ShoppingCartController::class, '
 ->name("cart.add");
 
 Route::get("/cart", [\App\Http\Controllers\ShoppingCartController::class, 'cart'])->name('cart');
+Route::get('/cart/finish', [shoppingCartController::class, 'finishOrder'])->name('cart.finish');
+
+Route::post('/cart/clear', function () {
+    Session::remove('product');
+
+    return redirect()->back();
+});
+
 
 Route::controller(ContactControler::class)->name('contact.')->group(function () {
         Route::get('/contact', 'index')->name('index');
