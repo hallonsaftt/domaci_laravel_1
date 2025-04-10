@@ -8,6 +8,13 @@
     <div class="container my-5">
         <h2 class="mb-4">🛒 Your Shopping Cart</h2>
 
+        <!-- Poruka o uspehu koja će se prikazivati nakon brisanja proizvoda -->
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="row">
             <!-- Products Table -->
             <div class="col-lg-8 mb-4">
@@ -39,9 +46,13 @@
                                             <td>${{ number_format($item['price'], 2) }}</td>
                                             <td>${{ number_format($item['total'], 2) }}</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
+                                                <form method="POST" action="{{ route('cart.remove', ['id' => $item['product_id']]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -50,7 +61,7 @@
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">
-                                <a href="/shop" class="btn btn-outline-secondary">
+                                <a href="/" class="btn btn-outline-secondary">
                                     <i class="fas fa-arrow-left me-2"></i>Continue Shopping
                                 </a>
                                 <form method="POST" action="/cart/clear">

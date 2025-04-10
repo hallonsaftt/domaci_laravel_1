@@ -49,6 +49,24 @@ Route::post('/cart/clear', function () {
     return redirect()->back();
 });
 
+// Route za brisanje proizvoda iz korpe
+Route::delete('/cart/remove/{id}', function ($id) {
+
+
+    // Ukloni proizvod iz sesije
+    $cart = Session::get('product', []);
+
+    // Ako proizvod postoji u korpi, ukloni ga
+    if (isset($cart[$id])) {
+        unset($cart[$id]);
+        Session::put('product', $cart);
+    }
+
+    // Preusmeravanje nazad sa porukom
+    return redirect()->back()->with('success', 'Product removed from cart!');
+})->name('cart.remove');
+
+
 
 Route::controller(ContactControler::class)->name('contact.')->group(function () {
         Route::get('/contact', 'index')->name('index');

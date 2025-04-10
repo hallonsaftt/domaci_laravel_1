@@ -49,6 +49,7 @@ class ShoppingCartController extends Controller
 
             if ($product) {
                 $combined[] = [
+                    'product_id' => $product->id,
                     'name' => $product->name,
                     'amount' => $item['amount'],
                     'price' => $product->price,
